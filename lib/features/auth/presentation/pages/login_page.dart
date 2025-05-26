@@ -158,7 +158,7 @@ class _LoginPageState extends State<LoginPage> {
                     BlocConsumer<AuthCubit, AuthState>(
                       listener: (context, state) {
                         if (state is LoginSuccess) {
-                          Navigator.pushReplacementNamed(context, '/start');
+                          Navigator.pushReplacementNamed(context, '/home');
                            //Navigator.pushReplacementNamed(context, '/home');
                         } else if (state is LoginError) {
                           ScaffoldMessenger.of(context).showSnackBar(

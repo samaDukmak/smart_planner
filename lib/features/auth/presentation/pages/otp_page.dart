@@ -182,7 +182,7 @@ class _OtpPageState extends State<OtpPage> {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(content: Text("تم التحقق بنجاح")),
                       );
-                      Navigator.pushReplacementNamed(context, '/start');
+                      Navigator.pushReplacementNamed(context, '/home');
                         // Navigator.pushReplacementNamed(context, '/home');
                     } else if (state is OtpError) {
                       ScaffoldMessenger.of(context).showSnackBar(

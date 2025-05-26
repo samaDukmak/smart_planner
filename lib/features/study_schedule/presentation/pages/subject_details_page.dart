@@ -1,284 +1,14 @@
 // features/study_schedule/presentation/pages/subject_details_page.dart
-// // // import 'package:flutter/material.dart';
-// // // import '../../data/models/subject_model.dart';
 
-// // // class SubjectDetailsPage extends StatefulWidget {
-// // //   const SubjectDetailsPage({Key? key}) : super(key: key);
-
-// // //   @override
-// // //   State<SubjectDetailsPage> createState() => _SubjectDetailsPageState();
-// // // }
-
-// // // class _SubjectDetailsPageState extends State<SubjectDetailsPage> {
-// // //   late final int _total;
-// // //   final List<SubjectModel> _subjects = [];
-// // //   final _nameCtrl = TextEditingController();
-// // //   double _difficulty = 0;
-// // //   double _understanding = 0;
-// // //   int _index = 0;
-
-// // //   @override
-// // //   void didChangeDependencies() {
-// // //     super.didChangeDependencies();
-// // //     _total = ModalRoute.of(context)!.settings.arguments as int;
-// // //   }
-
-// // //   @override
-// // //   void dispose() {
-// // //     _nameCtrl.dispose();
-// // //     super.dispose();
-// // //   }
-
-// // //   void _saveAndNext() {
-// // //     _subjects.add(SubjectModel(
-// // //       name: _nameCtrl.text.trim(),
-// // //       difficulty: _difficulty,
-// // //       understanding: _understanding,
-// // //     ));
-// // //     if (_index + 1 < _total) {
-// // //       setState(() {
-// // //         _index++;
-// // //         _nameCtrl.clear();
-// // //         _difficulty = 0;
-// // //         _understanding = 0;
-// // //       });
-// // //     } else {
-// // //       Navigator.pop(context, _subjects);
-// // //     }
-// // //   }
-
-// // //   @override
-// // //   Widget build(BuildContext ctx) {
-// // //     return Scaffold(
-// // //       appBar: AppBar(title: Text('Subject ${_index+1} of $_total')),
-// // //       body: Padding(
-// // //         padding: const EdgeInsets.all(16),
-// // //         child: Column(
-// // //           children: [
-// // //             TextField(
-// // //               controller: _nameCtrl,
-// // //               decoration: const InputDecoration(labelText: 'Subject name'),
-// // //             ),
-// // //             const SizedBox(height: 16),
-// // //             Text('Difficulty: ${_difficulty.round()}'),
-// // //             Slider(
-// // //               value: _difficulty,
-// // //               min: 0, max: 100,
-// // //               onChanged: (v) => setState(() => _difficulty = v),
-// // //             ),
-// // //             const SizedBox(height: 16),
-// // //             Text('Understanding: ${_understanding.round()}'),
-// // //             Slider(
-// // //               value: _understanding,
-// // //               min: 0, max: 100,
-// // //               onChanged: (v) => setState(() => _understanding = v),
-// // //             ),
-// // //             const SizedBox(height: 24),
-// // //             ElevatedButton(
-// // //               onPressed: _nameCtrl.text.trim().isEmpty ? null : _saveAndNext,
-// // //               child: Text(_index+1 < _total ? 'Next' : 'Done'),
-// // //             ),
-// // //           ],
-// // //         ),
-// // //       ),
-// // //     );
-// // //   }
-// // // }
-// // import 'package:flutter/material.dart';
-// // import '../../data/models/subject_model.dart';
-
-// // class SubjectDetailsPage extends StatefulWidget {
-// //   const SubjectDetailsPage({Key? key}) : super(key: key);
-
-// //   @override
-// //   State<SubjectDetailsPage> createState() => _SubjectDetailsPageState();
-// // }
-
-// // class _SubjectDetailsPageState extends State<SubjectDetailsPage> {
-// //   late final int _total;
-// //   final List<SubjectModel> _subjects = [];
-// //   final _nameCtrl = TextEditingController();
-// //   double _difficulty = 0;
-// //   double _understanding = 0;
-// //   int _index = 0;
-
-// //   @override
-// //   void didChangeDependencies() {
-// //     super.didChangeDependencies();
-// //     // the number of subjects is passed via RouteSettings.arguments
-// //     _total = ModalRoute.of(context)!.settings.arguments as int;
-// //   }
-
-// //   @override
-// //   void dispose() {
-// //     _nameCtrl.dispose();
-// //     super.dispose();
-// //   }
-
-// //   void _saveAndNext() {
-// //     // add the current subject
-// //     _subjects.add(SubjectModel(
-// //       name: _nameCtrl.text.trim(),
-// //       difficulty: _difficulty,
-// //       understanding: _understanding,
-// //     ));
-
-// //     if (_index + 1 < _total) {
-// //       // prepare for next subject
-// //       setState(() {
-// //         _index++;
-// //         _nameCtrl.clear();
-// //         _difficulty = 0;
-// //         _understanding = 0;
-// //       });
-// //     } else {
-// //       // done: pop back with the full list
-// //       Navigator.pop(context, _subjects);
-// //     }
-// //   }
-
-// //   @override
-// //   Widget build(BuildContext ctx) {
-// //     return Scaffold(
-// //       appBar: AppBar(
-// //         title: Text('Subject ${_index + 1} of $_total'),
-// //       ),
-// //       body: Padding(
-// //         padding: const EdgeInsets.all(16),
-// //         child: Column(
-// //           children: [
-// //             TextField(
-// //               controller: _nameCtrl,
-// //               decoration: const InputDecoration(
-// //                 labelText: 'Subject name',
-// //               ),
-// //             ),
-// //             const SizedBox(height: 24),
-
-// //             Text('Difficulty: ${_difficulty.round()}'),
-// //             Slider(
-// //               value: _difficulty,
-// //               min: 0,
-// //               max: 100,
-// //               divisions: 100, // ensure integer steps
-// //               label: _difficulty.round().toString(),
-// //               onChanged: (v) => setState(() => _difficulty = v),
-// //             ),
-// //             const SizedBox(height: 24),
-
-// //             Text('Understanding: ${_understanding.round()}'),
-// //             Slider(
-// //               value: _understanding,
-// //               min: 0,
-// //               max: 100,
-// //               divisions: 100, // ensure integer steps
-// //               label: _understanding.round().toString(),
-// //               onChanged: (v) => setState(() => _understanding = v),
-// //             ),
-// //             const SizedBox(height: 32),
-
-// //             ElevatedButton(
-// //               onPressed: _nameCtrl.text.trim().isEmpty ? null : _saveAndNext,
-// //               child: Text(
-// //                 _index + 1 < _total ? 'Next' : 'Done',
-// //                 style: const TextStyle(fontSize: 16),
-// //               ),
-// //             ),
-// //           ],
-// //         ),
-// //       ),
-// //     );
-// //   }
-// // }
-
-// import 'package:flutter/material.dart';
-// import '../../data/models/subject_model.dart';
-
-// class SubjectDetailsPage extends StatefulWidget {
-//   const SubjectDetailsPage({Key? key}) : super(key: key);
-
-//   @override
-//   State<SubjectDetailsPage> createState() => _SubjectDetailsPageState();
-// }
-
-// class _SubjectDetailsPageState extends State<SubjectDetailsPage> {
-//   late final int _total;
-//   final List<SubjectModel> _subs = [];
-//   final _name = TextEditingController();
-//   double _diff = 0, _under = 0;
-//   int _idx = 0;
-
-//   @override
-//   void didChangeDependencies() {
-//     super.didChangeDependencies();
-//     _total = ModalRoute.of(context)!.settings.arguments as int;
-//   }
-
-//   @override
-//   void dispose() {
-//     _name.dispose();
-//     super.dispose();
-//   }
-
-//   void _saveNext() {
-//     _subs.add(SubjectModel(
-//       name: _name.text.trim(),
-//       difficulty: _diff,
-//       understanding: _under,
-//     ));
-//     if (_idx + 1 < _total) {
-//       setState(() {
-//         _idx++;
-//         _name.clear();
-//         _diff = 0;
-//         _under = 0;
-//       });
-//     } else {
-//       Navigator.pop(context, _subs);
-//     }
-//   }
-
-//   @override
-//   Widget build(BuildContext ctx) {
-//     return Scaffold(
-//       appBar: AppBar(title: Text('Subject ${_idx+1} of $_total')),
-//       body: Padding(
-//         padding: const EdgeInsets.all(16),
-//         child: Column(children: [
-//           TextField(
-//             controller: _name,
-//             decoration: const InputDecoration(labelText: 'Subject name'),
-//           ),
-//           const SizedBox(height: 24),
-//           Text('Difficulty: ${_diff.round()}'),
-//           Slider(
-//             value: _diff,
-//             min: 0, max: 100,
-//             divisions: 100,
-//             label: _diff.round().toString(),
-//             onChanged: (v) => setState(() => _diff = v),
-//           ),
-//           const SizedBox(height: 24),
-//           Text('Understanding: ${_under.round()}'),
-//           Slider(
-//             value: _under,
-//             min: 0, max: 100,
-//             divisions: 100,
-//             label: _under.round().toString(),
-//             onChanged: (v) => setState(() => _under = v),
-//           ),
-//           const SizedBox(height: 32),
-//           ElevatedButton(
-//             onPressed: _name.text.trim().isEmpty ? null : _saveNext,
-//             child: Text(_idx + 1 < _total ? 'Next' : 'Done'),
-//           ),
-//         ]),
-//       ),
-//     );
-//   }
 // }
 import 'package:flutter/material.dart';
+import 'package:flutter_application_5/core/constants/planet_assets.dart';
+import 'package:flutter_application_5/core/models/PlanetConfig.dart';
+import 'package:flutter_application_5/core/widgets/curved_white_panel.dart';
+import 'package:flutter_application_5/core/widgets/custom_shapes/star_background.dart';
+import 'package:flutter_application_5/core/widgets/planetwidget.dart';
 import '../../data/models/subject_model.dart';
+
 
 class SubjectDetailsPage extends StatefulWidget {
   const SubjectDetailsPage({Key? key}) : super(key: key);
@@ -288,16 +18,23 @@ class SubjectDetailsPage extends StatefulWidget {
 }
 
 class _SubjectDetailsPageState extends State<SubjectDetailsPage> {
-  late final int _total;
-  final List<SubjectModel> _subs = [];
-  final _nameCtrl = TextEditingController();
+  late int _total;
+  bool _hasInit = false;               // حماية من تهيئة متكررة
+  final List<SubjectModel> _subjects = [];
+  final TextEditingController _nameCtrl = TextEditingController();
   double _difficulty = 0, _understanding = 0;
   int _index = 0;
+
+
+
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _total = ModalRoute.of(context)!.settings.arguments as int;
+    if (!_hasInit) {
+      _total = ModalRoute.of(context)!.settings.arguments as int;
+      _hasInit = true;
+    }
   }
 
   @override
@@ -307,7 +44,7 @@ class _SubjectDetailsPageState extends State<SubjectDetailsPage> {
   }
 
   void _saveAndNext() {
-    _subs.add(SubjectModel(
+    _subjects.add(SubjectModel(
       name: _nameCtrl.text.trim(),
       difficulty: _difficulty,
       understanding: _understanding,
@@ -320,51 +57,178 @@ class _SubjectDetailsPageState extends State<SubjectDetailsPage> {
         _understanding = 0;
       });
     } else {
-      Navigator.pop(context, _subs);
+      Navigator.pop(context, _subjects);
     }
   }
 
   @override
   Widget build(BuildContext ctx) {
+    final size = MediaQuery.of(ctx).size;
+    final planets = [
+      PlanetConfig(
+        assetPath: PlanetAssets.lightBlue,
+        leftPct: 0.0 / 393.0,
+        topPct: 173.0 / 852.0,
+        width: 95,
+        height: 96,
+      ),
+      PlanetConfig(
+        assetPath: PlanetAssets.turquoise,
+        leftPct: 24.0 / 393.0,
+        topPct: 38.45 / 852.0,
+        width: 78,
+        height: 78,
+      ),
+      PlanetConfig(
+        assetPath: PlanetAssets.orange,
+        leftPct: 128.0 / 393.0,
+        topPct: 173.0 / 852.0,
+        width: 123,
+        height: 80,
+      ),
+      PlanetConfig(
+        assetPath: PlanetAssets.lightBlue,
+        leftPct: 286.0 / 393.0,
+        topPct: 173.0 / 852.0,
+        width: 62,
+        height: 61,
+      ),
+      PlanetConfig(
+        assetPath: PlanetAssets.turquoise,
+        leftPct: 6.0 / 393.0,
+        topPct: 372.31 / 852.0,
+        width: 53.19,
+        height: 44.05,
+      ),
+      PlanetConfig(
+        assetPath: PlanetAssets.purpleStar,
+        leftPct: 152.0 / 393.0,
+        topPct: 443.0 / 852.0,
+        width: 85,
+        height: 86,
+      ),
+      PlanetConfig(
+        assetPath: PlanetAssets.purpleStar,
+        leftPct: 317.0 / 393.0,
+        topPct: 4.0 / 852.0,
+        width: 67.2,
+        height: 68,
+      ),
+      PlanetConfig(
+        assetPath: PlanetAssets.blue,
+        leftPct: 245.0 / 393.0,
+        topPct: 578.0 / 852.0,
+        width: 95,
+        height: 96,
+      ),
+    ];
+
     return Scaffold(
-      appBar: AppBar(title: Text('Subject ${_index + 1} of $_total')),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            TextField(
-              controller: _nameCtrl,
-              decoration: const InputDecoration(labelText: 'Subject name'),
+      backgroundColor: Colors.black,
+      body: Stack(
+        children: [
+          const Positioned.fill(
+            child: RandomStarBackground(
+              starCount: 60,
+              color: Colors.white24,
             ),
-            const SizedBox(height: 24),
-            Text('Difficulty: ${_difficulty.round()}'),
-            Slider(
-              value: _difficulty,
-              min: 0,
-              max: 100,
-              divisions: 100,
-              label: _difficulty.round().toString(),
-              onChanged: (v) => setState(() => _difficulty = v),
+          ),
+          for (var cfg in planets)
+            PlanetWidget(config: cfg, parentSize: size),
+             Positioned(
+            top: 320,
+            left: 0,
+            right: 0,
+            child: Text(
+              "Answer a few questions to get started",
+              style: const TextStyle(
+                  color: Color.fromARGB(255, 253, 251, 251), fontSize: 18),
+              textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 24),
-            Text('Understanding: ${_understanding.round()}'),
-            Slider(
-              value: _understanding,
-              min: 0,
-              max: 100,
-              divisions: 100,
-              label: _understanding.round().toString(),
-              onChanged: (v) => setState(() => _understanding = v),
+          ),
+          CurvedWhitePanel(
+            heightFactor: 0.5,
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                children: [
+                  Text(
+                    'Subject ${_index + 1} of $_total',
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  TextField(
+                    controller: _nameCtrl,
+                    decoration: InputDecoration(
+                      labelText: 'Subject Name',
+                      labelStyle: const TextStyle(color: Colors.black),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    style: const TextStyle(color: Colors.black),
+                  ),
+                  const SizedBox(height: 24),
+                  Text(
+                    'Difficulty: ${_difficulty.round()}',
+                    style: const TextStyle(color: Colors.black),
+                  ),
+                  Slider(
+                    value: _difficulty,
+                    min: 0,
+                    max: 100,
+                    divisions: 100,
+                    label: _difficulty.round().toString(),
+                    onChanged: (v) => setState(() => _difficulty = v),
+                  ),
+                  const SizedBox(height: 24),
+                  Text(
+                    'Understanding: ${_understanding.round()}',
+                    style: const TextStyle(color: Colors.black),
+                  ),
+                  Slider(
+                    value: _understanding,
+                    min: 0,
+                    max: 100,
+                    divisions: 100,
+                    label: _understanding.round().toString(),
+                    onChanged: (v) => setState(() => _understanding = v),
+                  ),
+                  const Spacer(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        width: 231,
+                        child: ElevatedButton(
+                          onPressed: _nameCtrl.text.trim().isEmpty
+                              ? null
+                              : _saveAndNext,
+                          child: Text(
+                            _index + 1 < _total ? 'Next' : 'Done',
+                            style: const TextStyle(color: Colors.white),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor:  const Color.fromARGB(
+                                          255, 100, 129, 202),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            padding: const EdgeInsets.symmetric(vertical: 12),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
-            const SizedBox(height: 32),
-            ElevatedButton(
-              onPressed:
-                  _nameCtrl.text.trim().isEmpty ? null : _saveAndNext,
-              child: Text(
-                  _index + 1 < _total ? 'Next' : 'Done'),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
